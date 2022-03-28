@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+
+    ports:
+      - "4000:8000"
+
+    volumes:
+      - ./back:/app/back
+
+    command: >
+      sh -c "cd ./back && python3 manage.py makemigrations &&
+              python3 manage.py migrate &&
+              python3 manage.py runserver 0.0.0.0:8000"
